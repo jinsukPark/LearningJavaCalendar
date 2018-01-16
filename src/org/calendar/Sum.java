@@ -10,7 +10,7 @@ public class Sum {
 		Scanner scanner = new Scanner(System.in);
 		String input1 = scanner.next();
 		String input2 = scanner.next();
-		//쉼표를 기준으로 분리한 문자열을 숫자로 변환한다.
+		//String을 int로 변환
 		int number1 = Integer.parseInt(input1);
 		int number2 = Integer.parseInt(input2);
 
