@@ -2,16 +2,14 @@ package org.calendar;
 
 import java.util.Scanner;
 
-
-
 public class Calendar {
-	private static final int[] MaxDays = {31,28,31,30,31,30,31,31,30,31,30,31};
+	private static final int[] MaxDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	public int maxDaysOfMonth(int month) {
 		return MaxDays[month - 1];
 	}
 
-	public void printCalendar(){
+	public void printCalendar() {
 		System.out.println("일   월   화   수   목   금   토");
 		System.out.println("--------------------");
 		System.out.println(" 1  2  3  4  5  6  7 ");
@@ -22,34 +20,47 @@ public class Calendar {
 
 	public static void main(String[] args) {
 
-
 		//------------------------내 풀이------------------------
-//		//입력받은 달의 최대 일수 출력
-//		int[] month = {1,2,3,4,5,6,7,8,9,10,11,12};
-//		int[] maxDay = {31,28,31,30,31,30,31,31,30,31,30,31};
-//
-//		System.out.println("달을 입력하세요.");
-//		Scanner scanner = new Scanner(System.in);
-//		String input1 = scanner.next();
-//		int number1 = Integer.parseInt(input1);
-//		int i = 0;
-//		//입력값이 배열의 어디에 있는지 찾기
-//		for(i = 0; i < month.length; i++ ) {
-//			if(number1 == month[i]) {
-//				break;
-//			}
-//		}
-//		scanner.close();
-//		System.out.printf("%d월은 %d일까지 있습니다.",month[i],maxDay[i]);
+		//		//입력받은 달의 최대 일수 출력
+		//		int[] month = {1,2,3,4,5,6,7,8,9,10,11,12};
+		//		int[] maxDay = {31,28,31,30,31,30,31,31,30,31,30,31};
+		//
+		//		System.out.println("달을 입력하세요.");
+		//		Scanner scanner = new Scanner(System.in);
+		//		String input1 = scanner.next();
+		//		int number1 = Integer.parseInt(input1);
+		//		int i = 0;
+		//		//입력값이 배열의 어디에 있는지 찾기
+		//		for(i = 0; i < month.length; i++ ) {
+		//			if(number1 == month[i]) {
+		//				break;
+		//			}
+		//		}
+		//		scanner.close();
+		//		System.out.printf("%d월은 %d일까지 있습니다.",month[i],maxDay[i]);
 		//------------------------내 풀이------------------------
 
 		//------------------------해답----------------------------
+
+		String PROMPT = "cal> ";
 		Scanner scanner = new Scanner(System.in);
 		Calendar calendar = new Calendar();
-		System.out.println("달을 입력하세요");
-		int month = scanner.nextInt();
+//		//반복횟수를 입력
+//		System.out.println("반복 횟수를 입력하세요.");
+//		int roopNum = scanner.nextInt();
 
-		System.out.printf("%d월은 %d일까지 있습니다.",month,calendar.maxDaysOfMonth(month));
+		while (true) {
+			System.out.println("달을 입력하세요");
+			System.out.print(PROMPT);
+			int month = scanner.nextInt();
+			if (month == -1) {
+				System.out.println("Have a nice day!");
+				break;
+			} else {
+				System.out.printf("%d월은 %d일까지 있습니다.\n", month, calendar.maxDaysOfMonth(month));
+			}
+		}
+		System.out.println("bye!");
 		scanner.close();
 		//------------------------해답----------------------------
 
