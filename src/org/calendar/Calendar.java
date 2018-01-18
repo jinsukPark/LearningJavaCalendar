@@ -1,68 +1,41 @@
 package org.calendar;
 
-import java.util.Scanner;
-
 public class Calendar {
+
 	private static final int[] MaxDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	private static final int[] LeapMaxDays = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-	public int maxDaysOfMonth(int month) {
-		return MaxDays[month - 1];
+	public int maxDaysOfMonth(int year, int month) {
+		if (isLeapYear(year))
+			return LeapMaxDays[month - 1];
+		else
+			return MaxDays[month - 1];
 	}
 
-	public void printCalendar() {
-		System.out.println("일   월   화   수   목   금   토");
-		System.out.println("--------------------");
-		System.out.println(" 1  2  3  4  5  6  7 ");
-		System.out.println(" 8  9 10 11 12 13 14");
-		System.out.println("15 16 17 18 19 20 21");
-		System.out.println("22 23 24 25 26 27 28");
+
+	public boolean isLeapYear(int year) {
+		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+			return true;
+		else
+			return false;
 	}
 
-	public static void main(String[] args) {
+	public void printCalendar(int year,int month) {
 
-		//------------------------내 풀이------------------------
-		//		//입력받은 달의 최대 일수 출력
-		//		int[] month = {1,2,3,4,5,6,7,8,9,10,11,12};
-		//		int[] maxDay = {31,28,31,30,31,30,31,31,30,31,30,31};
-		//
-		//		System.out.println("달을 입력하세요.");
-		//		Scanner scanner = new Scanner(System.in);
-		//		String input1 = scanner.next();
-		//		int number1 = Integer.parseInt(input1);
-		//		int i = 0;
-		//		//입력값이 배열의 어디에 있는지 찾기
-		//		for(i = 0; i < month.length; i++ ) {
-		//			if(number1 == month[i]) {
-		//				break;
-		//			}
-		//		}
-		//		scanner.close();
-		//		System.out.printf("%d월은 %d일까지 있습니다.",month[i],maxDay[i]);
-		//------------------------내 풀이------------------------
+		int maxDay = maxDaysOfMonth(year,month);
+		System.out.printf("   << %4d , %3d >>\n",year,month);
+		System.out.println(" SU MO TU WE TH FI SA ");
+		System.out.println("----------------------");
 
-		//------------------------해답----------------------------
-
-		String PROMPT = "cal> ";
-		Scanner scanner = new Scanner(System.in);
-		Calendar calendar = new Calendar();
-//		//반복횟수를 입력
-//		System.out.println("반복 횟수를 입력하세요.");
-//		int roopNum = scanner.nextInt();
-
-		while (true) {
-			System.out.println("달을 입력하세요");
-			System.out.print(PROMPT);
-			int month = scanner.nextInt();
-			if (month == -1) {
-				System.out.println("Have a nice day!");
-				break;
-			} else {
-				System.out.printf("%d월은 %d일까지 있습니다.\n", month, calendar.maxDaysOfMonth(month));
+		for (int i = 1; i <=  maxDay ;i++ ) {
+			System.out.printf("%3d",i);
+			if (i % 7 ==0) {
+				System.out.println();
 			}
-		}
-		System.out.println("bye!");
-		scanner.close();
-		//------------------------해답----------------------------
 
+		}
+		System.out.println();
 	}
+
+
 }
