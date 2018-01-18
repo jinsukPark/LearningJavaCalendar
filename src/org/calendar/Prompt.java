@@ -34,16 +34,21 @@ public class Prompt {
 
 		while (true) {
 			System.out.println("년도를 입력하세요");
-			System.out.print("YEAR> ");
+			System.out.print("YEAR > ");
 			int year = scanner.nextInt();
 			System.out.println("달을 입력하세요");
-			System.out.print("MONTH> ");
+			System.out.print("MONTH > ");
 			int month = scanner.nextInt();
+			System.out.println("첫번째 요일을 입력하세요.(su mo tu we th fi si)");
+			System.out.print("WEEKDAY > ");
+			String weekDay = scanner.next();
+
 			if (month == -1) {
+				//종료
 				break;
 			} else {
-				System.out.printf("%d월은 %d일까지 있습니다.\n", month, calendar.maxDaysOfMonth(year,month));
-				calendar.printCalendar(year,month);
+				//달력을 표시
+				calendar.printCalendar(year,month,weekDay);
 			}
 		}
 		System.out.println("bye!");
