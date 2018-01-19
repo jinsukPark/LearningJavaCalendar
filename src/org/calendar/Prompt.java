@@ -27,33 +27,29 @@ public class Prompt {
 		//		System.out.printf("%d월은 %d일까지 있습니다.",month[i],maxDay[i]);
 		//------------------------내 풀이------------------------
 
-		//------------------------해답----------------------------
 
 		Scanner scanner = new Scanner(System.in);
 		Calendar calendar = new Calendar();
 
 		while (true) {
-			System.out.println("년도를 입력하세요");
+			System.out.println("년도를 입력하세요. (-1 : 종료)");
 			System.out.print("YEAR > ");
 			int year = scanner.nextInt();
+			if (year == -1) {
+				break;
+			}
 			System.out.println("달을 입력하세요");
 			System.out.print("MONTH > ");
 			int month = scanner.nextInt();
-			System.out.println("첫번째 요일을 입력하세요.(su mo tu we th fi si)");
+			System.out.println("첫번째 요일을 입력하세요.(su mo tu we th fr sa)");
 			System.out.print("WEEKDAY > ");
 			String weekDay = scanner.next();
 
-			if (month == -1) {
-				//종료
-				break;
-			} else {
 				//달력을 표시
 				calendar.printCalendar(year,month,weekDay);
-			}
 		}
 		System.out.println("bye!");
 		scanner.close();
-		//------------------------해답----------------------------
 
 	}
 

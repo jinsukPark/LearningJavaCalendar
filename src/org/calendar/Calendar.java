@@ -5,6 +5,7 @@ public class Calendar {
 	private static final int[] MaxDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LeapMaxDays = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
+	//달의 마지막날
 	public int maxDaysOfMonth(int year, int month) {
 		if (isLeapYear(year))
 			return LeapMaxDays[month - 1];
@@ -12,7 +13,7 @@ public class Calendar {
 			return MaxDays[month - 1];
 	}
 
-
+	//윤년 계산 로직
 	public boolean isLeapYear(int year) {
 		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
 			return true;
@@ -20,6 +21,7 @@ public class Calendar {
 			return false;
 	}
 
+	//요일
 	public int parseDay(String weekDay) {
 		int weekNum = 0;
 		switch(weekDay) {
@@ -59,6 +61,7 @@ public class Calendar {
 			}
 
 		}
+		System.out.println();
 		System.out.println();
 	}
 
