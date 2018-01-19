@@ -21,40 +21,54 @@ public class Calendar {
 			return false;
 	}
 
-	//요일
-	public int parseDay(String weekDay) {
-		int weekNum = 0;
-		switch(weekDay) {
-		case "su": weekNum =0;
-				break;
-		case "mo": weekNum =1;
-		break;
-		case "tu": weekNum =2;
-		break;
-		case "we": weekNum =3;
-		break;
-		case "th": weekNum =4;
-		break;
-		case "fr": weekNum =5;
-		break;
-		case "sa": weekNum =6;
-		break;
+	//1년 1월 1일은 월요일
+	//참고 1970년1월1일목요일 -> 컴퓨터 달력 시작일
+	public int startWeekDay(int year, int month) {
+		int StartWeekDay = 0;
+		int yearCounter = 0;
+		int dayCounter = 0;
+
+		for (yearCounter = 1; yearCounter < year; yearCounter++) {
+			if (isLeapYear(yearCounter)) {
+				dayCounter += 366;
+			} else {
+				dayCounter += 365;
+			}
 		}
-		return weekNum;
+		if (isLeapYear(year)) {
+			for (int i = 1; i < month; i++) {
+				dayCounter += LeapMaxDays[i - 1];
+			}
+		} else {
+			for (int i = 1; i < month; i++) {
+				dayCounter += MaxDays[i - 1];
+			}
+		}
+
+		StartWeekDay = (dayCounter + 1) % 7;
+
+		System.out.println("yearCounter " + yearCounter);
+		System.out.println("dayCounter " + dayCounter);
+		System.out.println("StartWeekDay " + StartWeekDay);
+		System.out.println("isLeapYear(yearCounter) " + isLeapYear(yearCounter));
+
+		return StartWeekDay;
 	}
 
-	public void printCalendar(int year,int month,String weekDay) {
+
+	public void printCalendar(int year,int month,int weekDay) {
 
 		int maxDay = maxDaysOfMonth(year,month);
-		int parseDay = parseDay(weekDay);
+		int StartWeekDay = weekDay;
+
 		System.out.printf("   << %4d , %3d >>\n",year,month);
 		System.out.println(" SU MO TU WE TH FI SA ");
 		System.out.println("----------------------");
-		for (int i = 0 ; i < parseDay ; i++) {
+		for (int i = 0 ; i < StartWeekDay ; i++) {
 		System.out.printf("   ");
 		}
 		for (int i = 1 ; i <=  maxDay ;i++ ) {
-			int today = parseDay + i;
+			int today = StartWeekDay + i;
 			System.out.printf("%3d",i);
 			if (today % 7 ==0) {
 				System.out.println();

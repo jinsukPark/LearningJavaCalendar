@@ -41,9 +41,9 @@ public class Prompt {
 			System.out.println("달을 입력하세요");
 			System.out.print("MONTH > ");
 			int month = scanner.nextInt();
-			System.out.println("첫번째 요일을 입력하세요.(su mo tu we th fr sa)");
-			System.out.print("WEEKDAY > ");
-			String weekDay = scanner.next();
+			//시작하는 요일을 계산
+
+			int weekDay = calendar.startWeekDay(year, month);
 
 				//달력을 표시
 				calendar.printCalendar(year,month,weekDay);
