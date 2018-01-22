@@ -1,9 +1,50 @@
 package org.calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
 public class Calendar {
 
 	private static final int[] MaxDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LeapMaxDays = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	private HashMap<Date, String> planMap;
+
+	public Calendar() {
+		planMap = new HashMap<Date, String>();
+	}
+
+	/**
+	 *
+	 * @param strDate ex:"2017-06-25"
+	 * @param plan
+	 */
+	public void registerPlan(String strDate, String plan) {
+		try {
+			Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
+			System.out.println(date);
+			planMap.put(date, plan);
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	}
+	public String searchPlan(String strDate) {
+			Date date = null;
+			try {
+				date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
+			} catch (ParseException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+			String plan = planMap.get(date);
+			return plan;
+		}
+
+
+
 
 	//달의 마지막날
 	public int maxDaysOfMonth(int year, int month) {
@@ -55,22 +96,22 @@ public class Calendar {
 		return StartWeekDay;
 	}
 
+	//프린터 출력 메소드
+	public void printCalendar(int year, int month, int weekDay) {
 
-	public void printCalendar(int year,int month,int weekDay) {
-
-		int maxDay = maxDaysOfMonth(year,month);
+		int maxDay = maxDaysOfMonth(year, month);
 		int StartWeekDay = weekDay;
 
-		System.out.printf("   << %4d , %3d >>\n",year,month);
+		System.out.printf("   << %4d , %3d >>\n", year, month);
 		System.out.println(" SU MO TU WE TH FI SA ");
 		System.out.println("----------------------");
-		for (int i = 0 ; i < StartWeekDay ; i++) {
-		System.out.printf("   ");
+		for (int i = 0; i < StartWeekDay; i++) {
+			System.out.printf("   ");
 		}
-		for (int i = 1 ; i <=  maxDay ;i++ ) {
+		for (int i = 1; i <= maxDay; i++) {
 			int today = StartWeekDay + i;
-			System.out.printf("%3d",i);
-			if (today % 7 ==0) {
+			System.out.printf("%3d", i);
+			if (today % 7 == 0) {
 				System.out.println();
 			}
 
@@ -78,6 +119,5 @@ public class Calendar {
 		System.out.println();
 		System.out.println();
 	}
-
 
 }
