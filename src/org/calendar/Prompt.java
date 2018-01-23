@@ -20,7 +20,8 @@ public class Prompt {
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
 
-		while (true) {
+		boolean isLoop = true;
+		while (isLoop) {
 			System.out.println("명령 (1,2,3,h,q)");
 			String cmd = scanner.next();
 			switch (cmd) {
@@ -42,9 +43,12 @@ public class Prompt {
 				break;
 			case "q":
 				System.out.println("cmd  " + cmd);
+				isLoop = false;
 				break;
 			}
 		}
+		System.out.println("bye!!");
+		scanner.close();
 	}
 
 	public static void cmdRegister(Scanner s, Calendar c) {
